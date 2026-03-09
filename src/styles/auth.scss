@@ -1,0 +1,637 @@
+@use './variable' as *;
+
+/* -----------------------------
+Base / Global
+------------------------------ */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: $font-primary;
+  background: #f6f7fb;
+  color: #1f2a40;
+}
+
+a {
+  color: #4a7def;
+  text-decoration: none;
+}
+
+/* Page layout wrappers */
+.app-shell {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout {
+  min-height: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+}
+
+.panel {
+  min-height: 100%;
+  height: 100%;
+}
+
+/* Shared logo block used by auth pages */
+.logo {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 1px;
+  color: #4b7ef0;
+  font-weight: 800;
+
+  &-able {
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  &-pro {
+    font-size: 22px;
+    line-height: 1;
+    margin-top: 6px;
+  }
+}
+
+/* Keep the displayed size stable while using a higher-resolution PNG source. */
+.logo img {
+  width: 198px;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
+/* -----------------------------
+Left auth side (wizard)
+------------------------------ */
+.auth-core {
+  background: #fff;
+  padding: 25px 60px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.panel-header-spread {
+  justify-content: space-between;
+
+  p {
+    margin: 8px 0 0;
+    color: #5b6b79;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+
+  .current-step {
+    font-weight: 700;
+    color: #1f2a40;
+  }
+}
+
+.hero-copy {
+  max-width: 560px;
+  margin: 20px auto 0;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    margin: 14px 0 0;
+    font-size: 16px;
+    line-height: 24px;
+    color: #697891;
+    font-weight: 500;
+  }
+}
+
+.wizard-area {
+  width: min(620px, 100%);
+  margin: 25px auto 0;
+}
+
+.social-list {
+  display: grid;
+  gap: 14px;
+  padding: 15px 20px;
+}
+
+.social-btn,
+input,
+.primary,
+.ghost {
+  min-height: 58px;
+  width: 100%;
+  border: 1px solid #efefef;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  font-family: inherit;
+}
+
+.social-btn {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  color: #0f172a;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.social-icon {
+  width: 24px;
+  font-size: 36px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.social-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+}
+
+.email-step label {
+  display: block;
+  margin-bottom: 10px;
+  color: #5d6f8a;
+  font-size: 16px;
+  padding-top: 15px;
+}
+
+input {
+  background: #ffffff;
+  padding: 15px 20px;
+
+  &::placeholder {
+    color: #5b6b79;
+  }
+
+  &::-webkit-input-placeholder {
+    color: #5b6b79;
+  }
+
+  &::-moz-placeholder {
+    color: #5b6b79;
+    opacity: 1;
+  }
+}
+
+.split-actions {
+  margin-top: 16px;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 1fr 1fr;
+
+  .primary {
+    border-radius: 60px !important;
+  }
+}
+
+.ghost {
+  background: #fff;
+  color: #31425d;
+  cursor: pointer;
+  border-radius: 60px;
+}
+
+.primary {
+  border: 0;
+  background: #4b7ef0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.terms-note {
+  margin-top: auto;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #6d7d96;
+}
+
+/* -----------------------------
+Right auth side (testimonial)
+------------------------------ */
+.testimonial {
+  background: linear-gradient(180deg, #4b7ef0 0%, #2b5bd8 100%);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  overflow: hidden;
+
+  .testimonial-carousel {
+    width: 100%;
+    max-width: 530px;
+  }
+
+  .testimonial-inner {
+    text-align: center;
+    display: grid;
+  }
+
+  .carousel-item {
+    display: block;
+    grid-area: 1 / 1;
+    padding: 8px 0 64px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+
+  .carousel-item.active,
+  .carousel-item-next,
+  .carousel-item-prev {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quote {
+    margin: 0 auto;
+    max-width: 500px;
+  }
+
+  .carousel-indicators {
+    margin-bottom: 8px;
+
+    button {
+      width: 8px;
+      height: 8px;
+      margin: 0 4px;
+      border: 0;
+      border-radius: 999px;
+      background: #7ea6ff;
+      opacity: 1;
+
+      &.active {
+        width: 25px;
+        background: #c8d9ff;
+      }
+    }
+  }
+
+  h3 {
+    margin: 12px 0 2px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+  }
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+}
+
+.username {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #a3c0ff;
+}
+
+.stars {
+  margin: 12px 0;
+  position: relative;
+  display: inline-block;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 4px;
+}
+
+.stars-base {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.stars-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #f4b22b;
+}
+
+.quote {
+  margin: 0 auto;
+  max-width: 500px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+/* -----------------------------
+Login/Register card
+------------------------------ */
+.auth-form {
+  background: #fff;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.card {
+  width: min(560px, 100%);
+  background: #fff;
+  border: 1px solid #e3e8f4;
+  border-radius: 8px;
+  padding: 28px;
+  box-shadow: 0 18px 40px rgba(20, 48, 92, 0.08);
+
+  h2 {
+    margin: 12px 0 18px;
+    text-align: center;
+    font-size: 20px;
+    color: #1d2630;
+  }
+}
+
+.split-form .card {
+  box-shadow: none;
+  background: transparent;
+  border: 0;
+  width: min(620px, 100%);
+}
+
+.split-form .logo {
+  justify-content: center;
+  margin-bottom: 16px;
+
+  &-able {
+    font-size: 64px;
+  }
+
+  &-pro {
+    font-size: 22px;
+    margin-top: 8px;
+  }
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0;
+  color: #1d2630;
+  font-weight: 500;
+  font-size: 20px;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid #efefef;
+  }
+}
+
+.form-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.double-field {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.check-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: #5a6882;
+  font-size: 14px;
+  padding: 15px 020px 0;
+
+  /* Custom checkbox style to match rounded blue checked design. */
+  input[type='checkbox'] {
+    width: 24px;
+    height: 24px;
+
+    min-height: auto;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    border: 2px solid #8eabdf;
+
+    border-radius: 25px;
+
+    background: #fff;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #5d87e9;
+    }
+
+    &:focus-visible {
+      box-shadow: 0 0 0 3px rgba(75, 126, 240, 0.2);
+    }
+
+    &:checked {
+      border-color: #4b7ef0;
+
+      background-color: #4b7ef0;
+
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.2 8.4l2.8 2.8 6-6' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+      background-repeat: no-repeat;
+
+      background-position: center;
+
+      background-size: 20px 20px;
+    }
+  }
+
+  a {
+    margin-left: auto;
+  }
+}
+
+.switch-text {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  color: #596a86;
+}
+
+.auth-feedback.error {
+  margin: 0;
+  color: #c03838;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.auth-demo-box {
+  margin-top: 12px;
+  border: 1px dashed #c8d4ea;
+  border-radius: 8px;
+  background: #f7faff;
+  padding: 8px 10px;
+  display: grid;
+  gap: 2px;
+
+  p,
+  small {
+    margin: 0;
+    font-size: 12px;
+    color: #44526f;
+  }
+}
+
+/* -----------------------------
+Side illustration shapes
+------------------------------ */
+.illustration-panel {
+  background: url(../assets/login-artwork.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Tablet and below */
+@media (max-width: 1100px) {
+  .app-shell {
+    height: auto;
+    overflow: visible;
+  }
+
+  .layout {
+    min-height: 100vh;
+    height: auto;
+    grid-template-columns: 1fr;
+
+    .testimonial,
+    .illustration-panel {
+      min-height: 300px;
+      height: auto;
+    }
+  }
+
+  .panel {
+    min-height: auto;
+    height: auto;
+  }
+
+  .auth-core,
+  .auth-form {
+    overflow: visible;
+  }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .auth-core {
+    padding: 18px;
+  }
+
+  .hero-copy {
+    margin-top: 34px;
+
+    h1 {
+      font-size: 42px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .logo {
+    &-able {
+      font-size: 34px;
+    }
+
+    &-pro {
+      font-size: 13px;
+      margin-top: 5px;
+    }
+  }
+
+  .logo img {
+    width: 150px;
+  }
+
+  .panel-header-spread p {
+    font-size: 13px;
+  }
+
+  .social-btn,
+  input,
+  .primary,
+  .ghost {
+    min-height: 50px;
+    font-size: 16px;
+  }
+
+  .split-actions,
+  .double-field,
+  .switch-text {
+    grid-template-columns: 1fr;
+    display: grid;
+    gap: 10px;
+  }
+
+  .testimonial {
+    .testimonial-carousel,
+    .testimonial-inner,
+    .carousel-item {
+      min-height: auto;
+      height: auto;
+    }
+  }
+}
