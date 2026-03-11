@@ -330,6 +330,18 @@ Right auth side (testimonial)
   color: #a3c0ff;
 }
 
+// Prevent Ant Design Rate from animating on carousel mount.
+.testimonial {
+  .ant-rate {
+    color: #ffd666;
+  }
+
+  .ant-rate-star-first,
+  .ant-rate-star-second {
+    transition: none;
+  }
+}
+
 .stars {
   margin: 12px 0;
   position: relative;

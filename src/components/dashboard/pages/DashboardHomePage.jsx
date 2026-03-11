@@ -10,7 +10,7 @@ import {
   MoreOutlined,
   PlusOutlined,
 } from '@ant-design/icons'
-import { Checkbox, Dropdown, Input, Modal } from 'antd'
+import { Button, Checkbox, Dropdown, Input, Modal } from 'antd'
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -414,9 +414,9 @@ function DashboardHomePage({ searchQuery = '' }) {
                     },
                   }}
                 >
-                  <button className="db-card-menu-btn" type="button" aria-label={`${item.title} options`}>
+                  <Button type="text" className="db-card-menu-btn" aria-label={`${item.title} options`}>
                     <MoreOutlined />
-                  </button>
+                  </Button>
                 </Dropdown>
               )}
             </div>
@@ -452,9 +452,9 @@ function DashboardHomePage({ searchQuery = '' }) {
           <div className="db-chart-head">
             <h3>Monthly Revenue</h3>
             <Dropdown trigger={['click']} menu={getPanelMenu('revenue')}>
-              <button className="db-card-menu-btn" type="button" aria-label="Monthly Revenue options">
+              <Button type="text" className="db-card-menu-btn" aria-label="Monthly Revenue options">
                 <EllipsisOutlined />
-              </button>
+              </Button>
             </Dropdown>
           </div>
           <div className="db-chart-meta">
@@ -473,9 +473,9 @@ function DashboardHomePage({ searchQuery = '' }) {
           <div className="db-chart-head">
             <h3>Project - Able Pro</h3>
             <Dropdown trigger={['click']} menu={getPanelMenu('project')}>
-              <button className="db-card-menu-btn" type="button" aria-label="Project options">
+              <Button type="text" className="db-card-menu-btn" aria-label="Project options">
                 <MoreOutlined />
-              </button>
+              </Button>
             </Dropdown>
           </div>
           <div className="db-task-chip"><span className="db-task-icon"><CalendarOutlined /></span> New Tasks <span>20</span></div>
@@ -490,9 +490,9 @@ function DashboardHomePage({ searchQuery = '' }) {
               </li>
             ))}
           </ul>
-          <button className="db-primary-btn db-block-btn" type="button" onClick={() => openAddTaskModal('Project - Able Pro')}>
+          <Button type="text" className="db-primary-btn db-block-btn" onClick={() => openAddTaskModal('Project - Able Pro')}>
             <PlusOutlined /> Add task
-          </button>
+          </Button>
             </article>
           )}
         </section>
@@ -506,9 +506,9 @@ function DashboardHomePage({ searchQuery = '' }) {
           <div className="db-chart-head">
             <h3>Project overview</h3>
             <Dropdown trigger={['click']} menu={getPanelMenu('overview')}>
-              <button className="db-card-menu-btn" type="button" aria-label="Project overview options">
+              <Button type="text" className="db-card-menu-btn" aria-label="Project overview options">
                 <EllipsisOutlined />
-              </button>
+              </Button>
             </Dropdown>
           </div>
           <div className="db-overview-grid">
@@ -536,9 +536,9 @@ function DashboardHomePage({ searchQuery = '' }) {
                 />
               </div>
             </div>
-            <button className="db-primary-btn db-overview-add-btn" type="button" onClick={() => openAddTaskModal('Project overview')}>
+            <Button type="text" className="db-primary-btn db-overview-add-btn" onClick={() => openAddTaskModal('Project overview')}>
               <PlusOutlined /> Add task
-            </button>
+            </Button>
           </div>
             </article>
           )}
@@ -554,9 +554,9 @@ function DashboardHomePage({ searchQuery = '' }) {
               </div>
             </div>
             <Dropdown trigger={['click']} menu={getPanelMenu('team')}>
-              <button className="db-card-menu-btn" type="button" aria-label="Able pro options">
+              <Button type="text" className="db-card-menu-btn" aria-label="Able pro options">
                 <EllipsisOutlined />
-              </button>
+              </Button>
             </Dropdown>
           </div>
           <div className="db-team-row">
@@ -570,7 +570,7 @@ function DashboardHomePage({ searchQuery = '' }) {
               </div>
             ) : null}
             {teamMembers.length >= 4 ? <span className="count">+{teamMembers.length - 3}</span> : null}
-            <button className="db-team-add" type="button" onClick={() => setTeamModalOpen(true)}>+</button>
+            <Button type="text" className="db-team-add" onClick={() => setTeamModalOpen(true)}>+</Button>
           </div>
             </article>
           )}
@@ -585,33 +585,33 @@ function DashboardHomePage({ searchQuery = '' }) {
           <div className="db-chart-head">
             <h3>Transactions</h3>
             <Dropdown trigger={['click']} menu={getPanelMenu('transactions')}>
-              <button className="db-card-menu-btn" type="button" aria-label="Transactions options">
+              <Button type="text" className="db-card-menu-btn" aria-label="Transactions options">
                 <MoreOutlined />
-              </button>
+              </Button>
             </Dropdown>
           </div>
           <div className="db-tabs">
-            <button
+            <Button
+              type="text"
               className={activeTransactionTab === 'all' ? 'active' : ''}
-              type="button"
               onClick={() => setActiveTransactionTab('all')}
             >
               All Transaction
-            </button>
-            <button
+            </Button>
+            <Button
+              type="text"
               className={activeTransactionTab === 'success' ? 'active' : ''}
-              type="button"
               onClick={() => setActiveTransactionTab('success')}
             >
               Success
-            </button>
-            <button
+            </Button>
+            <Button
+              type="text"
               className={activeTransactionTab === 'pending' ? 'active' : ''}
-              type="button"
               onClick={() => setActiveTransactionTab('pending')}
             >
               Pending
-            </button>
+            </Button>
           </div>
           <div className="db-transaction-list">
             {filteredTransactions.map((item) => (
@@ -630,7 +630,7 @@ function DashboardHomePage({ searchQuery = '' }) {
               </div>
             ))}
           </div>
-          <div className="db-transaction-actions"><button className="db-ghost-btn" type="button">View all Transaction History</button><button className="db-primary-btn" type="button">Create new Transaction</button></div>
+          <div className="db-transaction-actions"><Button type="text" className="db-ghost-btn">View all Transaction History</Button><Button type="text" className="db-primary-btn">Create new Transaction</Button></div>
             </article>
           )}
 
@@ -639,9 +639,9 @@ function DashboardHomePage({ searchQuery = '' }) {
           <div className="db-chart-head">
             <h3>Total Income</h3>
             <Dropdown trigger={['click']} menu={getPanelMenu('income')}>
-              <button className="db-card-menu-btn" type="button" aria-label="Total Income options">
+              <Button type="text" className="db-card-menu-btn" aria-label="Total Income options">
                 <MoreOutlined />
-              </button>
+              </Button>
             </Dropdown>
           </div>
           <div className="db-donut-wrap">
@@ -767,20 +767,20 @@ function DashboardHomePage({ searchQuery = '' }) {
       >
         <div className="db-team-modal">
           <div className="db-team-modal-actions">
-            <button
-              type="button"
+            <Button
+              type="text"
               className="db-modal-link-btn"
               onClick={() => setSelectedTeamIds(dummyTeamMembers.map((member) => member.id))}
             >
               Select all
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
+              type="text"
               className="db-modal-link-btn"
               onClick={() => setSelectedTeamIds([])}
             >
               Clear
-            </button>
+            </Button>
           </div>
           <p className="db-team-modal-note">Choose team members to add into Able pro group.</p>
           {dummyTeamMembers.map((member) => (

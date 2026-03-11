@@ -72,12 +72,7 @@ function DashboardCenter({ activeMenu = 'Dashboard', searchQuery = '', menuPath 
     // Main content area beneath top header.
     <main className="db-main">
       <div className="db-breadcrumb">
-        {breadcrumbParts.map((part, index) => (
-          <span key={`${part}-${index}`} className={index === breadcrumbParts.length - 1 ? 'db-breadcrumb-current' : ''}>
-            {index > 0 ? ' > ' : ''}
-            {part}
-          </span>
-        ))}
+        <Breadcrumb separator=">" items={breadcrumbParts.map((part, index) => ({ title: part, className: index === breadcrumbParts.length - 1 ? 'db-breadcrumb-current' : '' }))} />
       </div>
       <h2>{title}</h2>
 
@@ -95,3 +90,4 @@ function DashboardCenter({ activeMenu = 'Dashboard', searchQuery = '', menuPath 
 }
 
 export default DashboardCenter
+import { Breadcrumb } from 'antd'

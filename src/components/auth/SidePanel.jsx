@@ -1,3 +1,4 @@
+import { Rate } from 'antd'
 import AvatarAllie from '../../assets/default.png'
 import AvatarMartha from '../../assets/default.png'
 import AvatarKevin from '../../assets/default.png'
@@ -8,7 +9,7 @@ const testimonials = [
     name: 'Allie Grater',
     handle: '@alliegrater',
     avatar: AvatarAllie,
-    rating: 4.5,
+    rating: 2,
     quote:
       'Very good customer service!👌 I liked the design and there was nothing wrong, but found out after testing that it did not quite match the functionality and overall design that I needed for my type of software. I therefore contacted customer service and it was no problem even though the deadline for refund had actually expired.😍',
   },
@@ -24,13 +25,11 @@ const testimonials = [
     name: 'Kevin Marsh',
     handle: '@kmarsh',
     avatar: AvatarKevin,
-    rating: 4.5,
+    rating: 2.5,
     quote:
       'Solid design and smooth login journey. We adjusted a few form rules, and after that the product fit our internal workflow well.',
   },
 ]
-
-const TOTAL_STARS = 5
 
 function TestimonialPanel() {
   return (
@@ -61,16 +60,7 @@ function TestimonialPanel() {
               </div>
               <h3>{item.name}</h3>
               <p className="username">{item.handle}</p>
-              <div className="stars" role="img" aria-label={`${item.rating} out of ${TOTAL_STARS} stars`}>
-                <span className="stars-base" aria-hidden="true">★★★★★</span>
-                <span
-                  className="stars-fill"
-                  aria-hidden="true"
-                  style={{ width: `${(item.rating / TOTAL_STARS) * 100}%` }}
-                >
-                  ★★★★★
-                </span>
-              </div>
+              <Rate allowHalf disabled value={item.rating} aria-label={`${item.rating} star rating`} />
               <p className="quote">{item.quote}</p>
             </div>
           ))}
