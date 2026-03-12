@@ -24,3 +24,14 @@ $db-primary-strong: #2f74ff;
 //     import sidebar/header/footer
 // dashboard
 //     import shared components
+
+
+// Ant Design imports in this repo:
+
+// src/main.jsx — global reset CSS import 'antd/dist/reset.css'.
+// src/components/dashboard/DashboardHeader.jsx — Avatar, Badge, Button, Dropdown, Input.
+// src/components/dashboard/pages/DashboardHomePage.jsx — Button, Checkbox, Dropdown, Input, Modal.
+// src/components/dashboard/pages/DashboardMenuPage.jsx — Card, List, Tag.
+// src/components/auth/SidePanel.jsx — Rate.
+// src/components/dashboard/DashboardSidebar.jsx — Avatar, Badge.
+// src/components/dashboard/DashboardCenter.jsx — Breadcrumb.
